@@ -26,11 +26,6 @@ public class MainApp {
       Car car3 = new Car("BMW",30079);
       Car car4 = new Car("LADA",10050);
 
-      car1.setUser(user1);
-      car2.setUser(user2);
-      car3.setUser(user3);
-      car4.setUser(user4);
-
       user1.setCar(car1);
       user2.setCar(car2);
       user3.setCar(car3);
@@ -51,7 +46,7 @@ public class MainApp {
          System.out.println();
       }
 
-      System.out.println(userService.getUserByModelAndSeries("LADA",10050));
+      System.out.println(userService.getUserByModelAndSeries("Honda",15687));
 
       context.close();
    }

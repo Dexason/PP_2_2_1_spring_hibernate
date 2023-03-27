@@ -1,6 +1,5 @@
 package hiber.dao;
 
-import hiber.model.Car;
 import hiber.model.User;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -30,8 +29,9 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public User getUserByModelAndSeries(String modelCar, int seriesCar) {
-       Car car = (Car) sessionFactory.getCurrentSession().createQuery("FROM Car WHERE model = :modelCar AND series = :seriesCar").setParameter("modelCar", modelCar).setParameter("seriesCar", seriesCar).getSingleResult();
-       return car.getUser();
+       return (User) sessionFactory.getCurrentSession().
+               createQuery("FROM User WHERE id = (SELECT id FROM Car WHERE model = :modelCar AND series = :seriesCar)")
+               .setParameter("modelCar", modelCar).setParameter("seriesCar", seriesCar).getSingleResult();
    }
 
 }
